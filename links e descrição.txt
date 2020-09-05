@@ -1,0 +1,21 @@
+https://www.kaggle.com/vijayashreer/food-preferences
+
+só descreve a preferência do entrevistado, se ele prefere comida tradicional ou comida ocidental, bem como se prefere suco fresco e se gosta de comer sobremesa. achei meio ruim
+
+
+
+https://www.kaggle.com/shuyangli94/food-com-recipes-and-user-interactions
+
+me parece bem mais completo, e está na forma normal. (abram um arquivo por vez, essa é a dica de ouro)
+
+arquivo parece interessante, mas o raw tá uma bagunça e acho que é meio que inútil para nós
+
+https://www.kaggle.com/eliasdabbas/recipes-search-engine-results-data
+
+tem uma lista de pratos, bem como um monte de descrição de vídeos do YouTube com receitas e uma outra planilha com, acredito, comentários do YouTube
+
+
+
+https://www.kaggle.com/kanaryayi/recipe-ingredients-and-reviews
+
+achei interessante, tem o nome de cada receita, o tempo de preparo e de forno/fogão, além da descrição de ingredientes e instruções
