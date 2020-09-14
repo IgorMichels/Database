@@ -26,7 +26,7 @@ t0=time()
 for aircraft in range(qtd):
     try:
         driver.get("https://registry.faa.gov/aircraftinquiry/NNum_Results.aspx?NNumbertxt="+tailnumbers[aircraft])
-        print('Processing: '+tailnumbers[aircraft]+"     OK     "+str(aircraft)+' de '+str(qtd+1)+' - '+'{:.2f} %'.format(aircraft*100/qtd)+'     {:.2f} s'.format(time()-t0))
+        print('Processing: '+tailnumbers[aircraft]+"     OK     "+str(aircraft)+' de '+str(qtd+1)+' - '+'{:.2f} %'.format(aircraft*100/qtd)+'     {:.2f} min'.format((time()-t0)/60))
         data['companies'].add((
             driver.find_element_by_id('ctl00_content_lbOwnerName').text,
             driver.find_element_by_id('ctl00_content_lbOwnerCity').text,
@@ -61,7 +61,7 @@ for aircraft in range(qtd):
         ))
     except:
         f.write(tailnumbers[aircraft]+'\n')
-        print('Processing: '+tailnumbers[aircraft]+"    ERROR   "+str(aircraft)+' de '+str(qtd+1)+' - '+'{:.2f} %'.format(aircraft*100/qtd)+'     {:.2f} s'.format(time()-t0))
+        print('Processing: '+tailnumbers[aircraft]+"    ERROR   "+str(aircraft)+' de '+str(qtd+1)+' - '+'{:.2f} %'.format(aircraft*100/qtd)+'     {:.2f} s'.format((time()-t0)/60))
 
 f.close()
 
