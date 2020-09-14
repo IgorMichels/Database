@@ -16,7 +16,7 @@ data = {
     'companies' : set(), # Set of tuples like (name,city,state,country)
     'engine_types' : set(), # Set of engine types
     'aircraft_types' : set(), # Set of aircraft types
-    'aircraft_models' : set(), # Set of aircraft models
+    'aircraft_models' : set(), # Set of tuples like (Manufacturer,Aircraft_model)
     'manufacturers' : set(), # Set of Manufacturers
     'aircrafts' : set(), # Set of tuples like (N-Number,Company_name,Airplane_Model,Engine_Type,Aircraft_Type,Year)
 }
@@ -26,7 +26,6 @@ t0=time()
 for aircraft in range(qtd):
     try:
         driver.get("https://registry.faa.gov/aircraftinquiry/NNum_Results.aspx?NNumbertxt="+tailnumbers[aircraft])
-        print('Processing: '+tailnumbers[aircraft]+"     OK     "+str(aircraft)+' de '+str(qtd+1)+' - '+'{:.2f} %'.format(aircraft*100/qtd)+'     {:.2f} min'.format((time()-t0)/60))
         data['companies'].add((
             driver.find_element_by_id('ctl00_content_lbOwnerName').text,
             driver.find_element_by_id('ctl00_content_lbOwnerCity').text,
@@ -59,9 +58,42 @@ for aircraft in range(qtd):
             driver.find_element_by_id('ctl00_content_Label11').text,
             driver.find_element_by_id('ctl00_content_Label17').text
         ))
+
+        print('Processed: '+tailnumbers[aircraft]+"     OK     "+str(aircraft+1)+' de '+str(qtd)+' - '+'{:.2f} %'.format((aircraft+1)*100/qtd)+'     {:.2f} min'.format((time()-t0)/60))
+    
     except:
-        f.write(tailnumbers[aircraft]+'\n')
-        print('Processing: '+tailnumbers[aircraft]+"    ERROR   "+str(aircraft)+' de '+str(qtd+1)+' - '+'{:.2f} %'.format(aircraft*100/qtd)+'     {:.2f} s'.format((time()-t0)/60))
+        try:
+            driver.get("https://registry.faa.gov/aircraftinquiry/NNum_Results.aspx?NNumbertxt="+tailnumbers[aircraft])
+            data['companies'].add((
+                driver.find_element_by_id('ctl00_content_drptrDeRegAircraft_ctl01_lbDROwnerName').text,
+                driver.find_element_by_id('ctl00_content_drptrDeRegAircraft_ctl01_lbDROwnerCity').text,
+                driver.find_element_by_id('ctl00_content_drptrDeRegAircraft_ctl01_lbDROwnerState').text,
+                driver.find_element_by_id('ctl00_content_drptrDeRegAircraft_ctl01_lbDROwnerCountry').text
+            ))
+
+            data['aircraft_models'].add((
+                driver.find_element_by_id('ctl00_content_drptrDeRegAircraft_ctl01_lbDeRegMfrName').text,
+                driver.find_element_by_id('ctl00_content_drptrDeRegAircraft_ctl01_lbDeRegModel').text
+            ))
+
+            data['manufacturers'].add(
+                driver.find_element_by_id('ctl00_content_drptrDeRegAircraft_ctl01_lbDeRegMfrName').text
+            )
+
+            data['aircrafts'].add((
+                tailnumbers[aircraft],
+                driver.find_element_by_id('ctl00_content_drptrDeRegAircraft_ctl01_lbDROwnerName').text,
+                driver.find_element_by_id('ctl00_content_drptrDeRegAircraft_ctl01_lbDeRegModel').text,
+                'NULL',
+                'NULL',
+                driver.find_element_by_id('ctl00_content_drptrDeRegAircraft_ctl01_lbDeRegYearMfr').text
+            ))
+
+            print('Processed: '+tailnumbers[aircraft]+"     OK     "+str(aircraft+1)+' de '+str(qtd)+' - '+'{:.2f} %'.format((aircraft+1)*100/qtd)+'     {:.2f} min'.format((time()-t0)/60))
+
+        except:
+            f.write(tailnumbers[aircraft]+'\n')
+            print('Processed: '+tailnumbers[aircraft]+"    ERROR   "+str(aircraft+1)+' de '+str(qtd)+' - '+'{:.2f} %'.format((aircraft+1)*100/qtd)+'     {:.2f} s'.format((time()-t0)/60))
 
 f.close()
 
