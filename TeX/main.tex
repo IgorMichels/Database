@@ -38,7 +38,13 @@ Para a extração dos dados da BTS simplesmente acessamos o site e baixamos os d
     \label{fig: print}
 \end{figure}
 
-Já para a extração dos dados da FAA foi elaborado um script para fazer a busca e coleta dos dados das aeronaves utilizadas nos voos. Para fazer tal script também foi elaborado um arquivo .xlsx com todos os registros de aeronaves da BTS.
+Após isso, precisamos buscar os dados das aeronaves. Assim, pelos registros dos voos pegamos os registros de cada aeronave utilizada e buscamos os respectivos registros no site da FAA.
+
+Como a FAA não libera um arquivo com os dados das aeronaves, foi elaborado um script para fazer a busca e coleta dos dados das aeronaves utilizadas. Para fazer tal script também foi elaborado um arquivo .txt com todos os registros de aeronaves encontrados nos registros da BTS.
+
+Durante a execução desse script ocorreram alguns erros de leitura, pois nem todas as aeronaves possuiam registro ativo na FAA, então criamos uma lista de ``falhas''. Houveram, de um total de 5998 aeronaves, 70 com falha na coleta\footnote{Aeronaves sem registro ou sem registro ativo.}. Dessas falhas, reformulamos o script e o executamos novamente ele para realizar a coleta dos dados, dessa forma conseguimos coletar os dados de 40 aeronaves com registro vencido, as outras 30 não possuiam registro na FAA, então ficaram sem dados de fabricante, companhia, etc.
+
+A saída desse script foi dada pela geração de 6 arquivos csv, cada um correspondendo a uma tabela do banco (aircraft\_model, aircraft\_types, aircrafts, companies, engine\_types e manufacturers).
 
 \subsection{Manipulação}
 
