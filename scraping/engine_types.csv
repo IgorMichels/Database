@@ -1,7 +1,7 @@
-Engine_Types
-Turbo-shaft
-Turbo-fan
-Turbo-prop
-Turbo-jet
-Electric
-Reciprocating
+﻿Id;Engine_Type
+1;Turbo-fan
+2;Turbo-jet
+3;Reciprocating
+4;Turbo-shaft
+5;Turbo-prop
+6;Electric
