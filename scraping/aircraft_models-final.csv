@@ -1,4 +1,4 @@
-id_model;id_manufacturer;aircraft_model
+id_model;manufacturer_id;model
 1;1;M20J
 2;2;MARQUART M 5 CHARGER
 3;2;MONTANA COYOTE
