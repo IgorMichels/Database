@@ -1,4 +1,4 @@
-id;ORIGIN;DEST
+id_route;origin_cod;dest_cod
 1;ATL;SGF
 2;SGF;ATL
 3;SRQ;JFK
