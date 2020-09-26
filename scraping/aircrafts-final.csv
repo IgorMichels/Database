@@ -1,4 +1,4 @@
-id_aircraft;N-Number;Company_ID;Airplane_Model;Engine_Type_Id;Aircraft_Type;Year
+id_aircraft;n-number;company_id;model_id;engine_id;aircraft_type_id;year
 1;215NV;83;32;1;1;2000
 2;216NV;83;32;1;1;2000
 3;217NV;83;32;1;1;2000
