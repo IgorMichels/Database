@@ -10,7 +10,6 @@ mydb = mysql.connector.connect(
 mycursor = mydb.cursor()
 
 
-'''
 # Populating Delay Causes
 df = pd.read_csv("scraping/delay_types-final.csv", delimiter=";")
 sql = "INSERT INTO Delay_Causes (id_delay,cause) VALUES (%s,%s)"
@@ -98,10 +97,11 @@ sql = "INSERT INTO Aircrafts (N_Number,Companys_id,Aircraft_Models_id,Engine_Typ
 val = [x[1:] for x in df.values.tolist()]
 mycursor.executemany(sql,val)
 mydb.commit()
-'''
 
+
+'''
 # Populating Flights
-months = [ '2019-01 - final.csv',
+months = [  '2019-01 - final.csv',
             '2019-02 - final.csv',
             '2019-03 - final.csv',
             '2019-04 - final.csv',
@@ -119,6 +119,7 @@ months = [ '2019-01 - final.csv',
             '2020-04 - final.csv',
             '2020-05 - final.csv']
 
+
 for month in months:
     df = pd.read_csv("scraping/"+month, delimiter=";")
     df = df.where(pd.notnull(df), None)
@@ -126,3 +127,36 @@ for month in months:
     val = df.values.tolist()
     mycursor.executemany(sql,val)
     mydb.commit()
+'''
+
+
+
+'''
+ #### AJEITANDO CSV DE VOOS
+months = [  '2019-01 - final',
+            '2019-02 - final',
+            '2019-03 - final',
+            '2019-04 - final',
+            '2019-05 - final',
+            '2019-06 - final',
+            '2019-07 - final',
+            '2019-08 - final',
+            '2019-09 - final',
+            '2019-10 - final',
+            '2019-11 - final',
+            '2019-12 - final',
+            '2020-01 - final',
+            '2020-02 - final',
+            '2020-03 - final',
+            '2020-04 - final',
+            '2020-05 - final']
+
+for m in months:
+    path=m+'.csv'
+    df = (dict(pd.read_csv(path,delimiter=';')))
+    for i in range(len(df['FL_DATE'])):
+        prev = df['FL_DATE'][i]
+        df['FL_DATE'][i] = prev[6:]+'-'+prev[0:2]+'-'+prev[3:5]
+    df = pd.DataFrame(df)
+    df.to_csv(path_or_buf=m+"-new.csv", sep=';', index=False)
+'''
