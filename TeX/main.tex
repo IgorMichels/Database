@@ -6,6 +6,7 @@
 \usepackage{indentfirst}
 \usepackage{graphicx}
 \usepackage{float}
+\usepackage[pdftex]{hyperref}
 \usepackage[backend = biber]{biblatex}
 \addbibresource{referencias.bib}
 \geometry{top = 3cm, bottom = 2cm, left = 3cm, right = 2cm}
@@ -38,7 +39,7 @@
 	\begin{figure}
 		\centering
 		\includegraphics[scale = 0.5]{Imagens/modelo conceitual anterior.png}
-		\caption{Modelo Conceitual}
+		\caption{Modelo Conceitual inicial}
 		\label{conceitual}
 	\end{figure}
 	
@@ -48,7 +49,7 @@
 	\begin{figure}
 		\centering
 		\includegraphics[scale = 0.7]{Imagens/modelo lógico anterior.png}
-		\caption{Modelo Lógico}
+		\caption{Modelo Lógico inicial}
 		\label{lógico}
 	\end{figure}
 	
@@ -76,7 +77,7 @@
 	
 	Após isso, precisamos manipular esses csv's de forma a separar os dados em arquivos menores, equivalentes as tabelas do banco de dados a ser implementado. Para isso, primeiramente separamos os dados que continham alguma informação acerca dos aeroportos, dessa forma seria mais simples montar as tabelas ``routes'', ``airports'' e ``cities''\footnote{Essa última de forma parcial.}.
 	
-	Com a modelagem descrita acima, percebemos que havia apenas um registro de aeroporto/companhia fora dos EUA, dessa forma optamos por ignorar tal registro, mantendo apenas os voos domésticos, conforme planejado inicialmente. Com essa decisão, a tabela ``country'' foi excluída, uma vez que todos são referentes aos EUA. Além dessa exclusão, retiramos algumas informações do banco, como, por exemplo, o nome do aeroporto. Feito isso, obtivemos os modelos que podem ser encontrados nas figuras \ref{new_conceitual} e \ref{new_lógico}.
+	Com a modelagem descrita acima, percebemos que havia apenas um registro de aeroporto/companhia fora dos EUA, dessa forma optamos por ignorar tal registro, mantendo apenas os voos domésticos, conforme planejado inicialmente. Com essa decisão, a tabela ``country'' foi excluída, uma vez que todos são referentes aos EUA. Além dessa exclusão, fizemos algumas outras alterações no banco como, por exemplo, a retirada do nome dos aeroportos. Feito isso, obtivemos os modelos que podem ser encontrados nas figuras \ref{new_conceitual} e \ref{new_lógico}.
 	\begin{figure}
 		\centering
 		\includegraphics[scale = 0.5]{Imagens/modelo conceitual.png}
@@ -93,13 +94,15 @@
 	
 	Para finalizar a modelagem dessas tabelas mais simples foi utilizada uma solução manual, fazendo todas as referências entre as tabelas através do Excel com o PROCV. A ideia de fazer manualmente se deu em virtude de haver muitos dados de cidades e companhias sem um padrão: a cidade de Atlanta tinha, além desse registro, os registros de Allanta e Altanta, por exemplo. Já a tabela ``Delay\_Causes'' a solução manual se deu por serem apenas quatro registros, os quais eram labels de colunas dos nossos dados. Nas demais tabelas foi, basicamente, colocado a ID, quando necessária, e referenciado os dados com outras tabelas, com exceção da ``states'', a qual considera todos os estados dos EUA, os quais podem ser encontrados em uma lista online como, por exemplo, na Wikipédia.
 	
-	Com o procedimento anterior já havíamos finalizado quase todas as tabelas, com exceção a tabela ``flights'', a qual requer um cuidado maior com o preenchimento dos campos ``Delay\_time'' e ``Delay\_Causes\_id''.
+	Com o procedimento anterior já havíamos finalizado quase todas as tabelas, com exceção a tabela ``flights'', a qual requer um cuidado maior com o preenchimento do campo ``Delay\_Causes\_id''. Para contornar esse problema criamos um código para ver qual das causas de delay gerou o maior atraso no voo, dessa forma, conseguimos encontrar a ``causa do delay''. Após isso, faltou apenas referenciar o voo com a rota, o que também foi feito no Excel.
+	
+	Após realizar todo processo descrito acima, criamos o banco e, em seguida, elaboramos um script para fazer a inclusão dos dados que se encontravam nos csv's para o banco de dados.
 	
 	\section{Resultados}
 	
 	Um primeiro resultado interessante já pôde ser observado na figura \ref{print}. Lá pudemos ver, na última coluna, que o tamanho dos arquivos diminuiu muito nos meses de abril e maio de 2020 quando comparado aos demais meses, em especial no mesmo período de 2019, ou seja, os estadunidenses passaram a viajar menos e, com isso, o arquivo passou a ter menos dados. Isso já se mostrou ser um dos reflexos do coronavírus, uma vez que a população passou a ficar mais isolada.
 	
-	
+	Já o resultado final, isto é, o banco de dados, pode ser encontrado \href{https://gvmail-my.sharepoint.com/:f:/g/personal/b39254_fgv_edu_br/Ev8i0xwOqnFFh_q3gTqvNAkBhzL_dpV6_ljzh82vJsTnNg?e=7ubrsl}{\textbf{nesse link}}.
 	
 	\printbibliography
 	
