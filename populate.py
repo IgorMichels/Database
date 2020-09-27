@@ -128,9 +128,9 @@ for month in months:
     mydb.commit()
 '''
 
-df = pd.read_csv("scraping/test.csv", delimiter=";")
-df = df.where(pd.notnull(df), None)
-sql = "INSERT INTO Flights (id_flight,Aircrafts_id,Route_id,Date,Arrival_time,Departure_time,Delay_time,Delay_Causes_id) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
-val = df.values.tolist()
-mycursor.executemany(sql,val)
-mydb.commit()
+# df = pd.read_csv("scraping/test.csv", delimiter=";")
+# df = df.where(pd.notnull(df), None)
+# sql = "INSERT INTO Flights (id_flight,Aircrafts_id,Route_id,Date,Arrival_time,Departure_time,Delay_time,Delay_Causes_id) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
+# val = df.values.tolist()
+# mycursor.executemany(sql,val)
+# mydb.commit()
