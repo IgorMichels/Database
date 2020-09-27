@@ -73,7 +73,7 @@ CREATE TABLE Flights (
     Date date NULL,
     Arrival_time time NULL,
     Departure_time time NULL,
-    Delay_time timestamp NULL,
+    Delay_time int NULL,
     Delay_Causes_id BIGINT UNSIGNED NULL,
     CONSTRAINT Flights_pk PRIMARY KEY (id_flight)
 );
